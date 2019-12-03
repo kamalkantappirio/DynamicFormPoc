@@ -42,7 +42,7 @@ export default class Welcome extends Component<Props>  {
           <Header />
          
           <View style={styles.body}>
-            <TouchableOpacity onPress={() => navigate('Login', {name: 'Jane'})}>
+            <TouchableOpacity onPress={() => navigate('CreateEventForm', {name: 'Jane'})}>
               <View style={styles.button}>
                 <Text style={styles.buttonText}>NEXT</Text>
               </View>
