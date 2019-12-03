@@ -7,54 +7,94 @@ import {
   Text,
   StatusBar,
   TouchableOpacity,
-  View
+  View,
 } from 'react-native';
+import { Formik, FormikProps } from "formik";
+import Button from './Button';
 
-
-export interface Props {
-  navigation: any;
+interface FormValues {
+  email: string;
+  password: string;
 }
 
 
+export interface Props {
+    navigation: any;
+}
+
+const buttonStyle = { 
+  backgroundColor: '#ff0000',
+  width: 100,
+  padding:10,
+  justifyContent:'center',
+  alignItems:'center'
+}
+
+const buttonTextStyle ={
+  color: '#ffffff',
+  fontWeight:'500'
+}
+
 export default class CreateEventForm extends React.Component<Props> {
 
-  render() {    
+  handleSubmit = () => {
+   console.log('kamal')
+  };
+
+  renderForm = ({
+    values,
+    setFieldValue,
+    touched,
+    errors,
+    setFieldTouched,
+    isSubmitting
+  }: FormikProps<FormValues>) => {
+    const formJoson = this.props.navigation.state.params.formJoson;
+    return(
+    <View style={styles.container}>
+      {formJoson.fields.map((item:any) => (<Text>{item.label}</Text>))}
+      <Button 
+        title='Submit'  
+        buttonStyle= { buttonStyle } 
+        buttonTextStyle = {buttonTextStyle}
+        onClick={this.handleSubmit}
+      />
+    </View>
+  )};
+
+  render() {
     const formJoson = this.props.navigation.state.params.formJoson;
     return (
-      <>
-      <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-            
-            {formJoson.fields.map((item:any) => (<Text>{item.label}</Text>))}
-          </ScrollView>
-        </SafeAreaView>
-        </>
+      <Formik
+        initialValues={{ email: "", password: "" }}
+        onSubmit={() => {}}
+        render={(formikBag: FormikProps<FormValues>) => this.renderForm(formikBag)}
+      />
     );
   }
+  
 }
 
 // styles
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: '#FAFAFA',
-    padding: 20,
-    height: '100%'
+  container: {
+    flex: 1,
+    justifyContent: "space-evenly",
+    alignItems: "center"
   },
-  input: {
-    height: 40, borderBottomColor:'#000000', borderBottomWidth: 1, padding:5,marginTop:10
+  
+  loginButtonContainer: {
+    width: 200
   },
-  button: {
-    backgroundColor: '#ff0000',
-    width: '100%',
-    padding:10,
-    justifyContent:'center',
-    alignItems:'center',
-    marginTop:20
+  loginButton: {
+    backgroundColor: 'blue'
   },
-  buttonText: {
-    color: '#ffffff'
+  loginButtonTitle: {
+    color: "white",
+    fontWeight:'500'
+  },
+  disabled: {
+    backgroundColor: 'blue',
+    opacity: 0.3
   }
 });
