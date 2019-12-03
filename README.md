@@ -63,9 +63,8 @@ fields: [
       dependentValue: 'division__c',
       selectedValues:'ABC'
     }
-]
-
-
+  ]
+}
 
 
 
