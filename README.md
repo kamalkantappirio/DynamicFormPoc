@@ -37,15 +37,35 @@ npx react-native init MyApp --template react-native-template-typescript
 npx react-native init MyApp --template react-native-template-typescript@6.2.0
 ```
 
-### Note on the legacy CLI
-There seems to be quite some confusion about the legacy CLI. This template only works with the new CLI. Make sure you have uninstalled the legacy `react-native-cli` first (`npm uninstall -g react-native-cli`), for the above command to work. If you wish to not use `npx`, you can also install the new CLI globally (`npm i -g @react-native-community/cli` or `yarn global add @react-native-community/cli`).
+### Creating dynamic form with using following json
+{ 
 
-Further information can be found here: https://github.com/react-native-community/cli#about
+fields: [ 
+    { 
+      label: 'Division', // key from localization file 
+      api_name: 'division__c', // Api name in service 
+      input_type: 'drop_down', 
+      validation: [{ validation_msg_key: 'empty_division', rule:'1 division must selected'], 
+      Options: [{value:'', label:''}], 
+      serviceCallName: getLocalDivisions/getWebDivisions, 
+      isSingleSelect: true, 
+      dependentValue: null,
+      selectedValues:'JR__c/ORTH__c'
+    },
+    { 
+      label: 'Branch', // key from localization file 
+      api_name: 'branch__c', // Api name in service 
+      input_type: 'drop_down', 
+      validation: [{ validation_msg_key: 'empty_brnach', rule:'1 branch must selected'], 
+      Options: [{value:'', label:''}], 
+      serviceCallName: getLocalBranches/getWebBranches, 
+      isSingleSelect: true, 
+      dependentValue: 'division__c',
+      selectedValues:'ABC'
+    }
+]
 
-## :computer: Contributing
 
-Contributions are very welcome. Please check out the [contributing document](CONTRIBUTING.md).
 
-## :bookmark: License
 
-This project is [MIT](LICENSE) licensed.
+
