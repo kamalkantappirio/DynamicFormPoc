@@ -4,10 +4,12 @@ import { DatePickerIOS, View } from 'react-native';
 interface DateTimePickerProps {
     onChange: Function;
     date: Date;
-    mode: string;
+    mode: any;
+    initialDate: Date
 }
 
 export const DateTimePickerComponent: React.SFC<DateTimePickerProps> = (props) => {
+    debugger;
     return (
         <View>
             <DatePickerIOS

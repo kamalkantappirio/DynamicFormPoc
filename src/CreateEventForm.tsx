@@ -6,6 +6,7 @@ import {
   StatusBar,
   TouchableOpacity,
   View,
+  DatePickerIOS
 } from 'react-native';
 import { Formik, FormikProps } from "formik";
 import Button from './Button';
@@ -46,9 +47,6 @@ export default class CreateEventForm extends React.Component<Props> {
 
   onSetDate = (date: Date) => {
     console.log(date);
-    this.setState({
-      date: date
-    })
   }
 
   renderForm = ({
@@ -67,6 +65,7 @@ export default class CreateEventForm extends React.Component<Props> {
             return (
               <View>
                 <DateTimePickerComponent
+                  initialDate = {new Date()}
                   date={this.state.date}
                   mode={"datetime"}
                   onChange={this.onSetDate} />
