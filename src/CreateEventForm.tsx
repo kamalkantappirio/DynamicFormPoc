@@ -19,6 +19,7 @@ export interface Props {
 export default class CreateEventForm extends React.Component<Props> {
 
   render() {    
+    const formJoson = this.props.navigation.state.params.formJoson;
     return (
       <>
       <StatusBar barStyle="dark-content" />
@@ -27,7 +28,7 @@ export default class CreateEventForm extends React.Component<Props> {
           contentInsetAdjustmentBehavior="automatic"
           style={styles.scrollView}>
             
-            <Text>Dynamic Form </Text>
+            {formJoson.fields.map((item:any) => (<Text>{item.label}</Text>))}
           </ScrollView>
         </SafeAreaView>
         </>

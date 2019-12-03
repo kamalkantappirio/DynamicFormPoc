@@ -17,6 +17,7 @@ import {
   StatusBar,
   TouchableOpacity
 } from 'react-native';
+import formJoson from "../formJoson"; 
 
 import {
   Header,
@@ -42,7 +43,7 @@ export default class Welcome extends Component<Props>  {
           <Header />
          
           <View style={styles.body}>
-            <TouchableOpacity onPress={() => navigate('CreateEventForm', {name: 'Jane'})}>
+            <TouchableOpacity onPress={() => navigate('CreateEventForm', { formJoson })}>
               <View style={styles.button}>
                 <Text style={styles.buttonText}>NEXT</Text>
               </View>
