@@ -23,7 +23,7 @@ interface Props {
     checkBoxData: CheckBoxProps
 }
 
-const CheckBoxGroup: any = ({ checkBoxData }: Props) => {
+const CheckBoxGroup = ({ checkBoxData }: Props) => {
 
     const [checkBoxOptions, setCheckBoxOptions] = useState(checkBoxData.Options);
 
