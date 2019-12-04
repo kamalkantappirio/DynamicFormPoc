@@ -3,15 +3,21 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
-  TextInput,
-  Text,
   StatusBar,
   TouchableOpacity,
   View,
+  DatePickerIOS
 } from 'react-native';
 import {Formik, FormikProps} from 'formik';
-import Button from './Button';
 import {MultiSelectDropdownComponent} from './MultiSelectDropdown';
+
+import Dropdown from './Components/Dropdown'
+import DateTimePickerComponent from './Components/DateTimePicker'
+import CheckBoxGroup from './Components/CheckBoxGroup'
+import Button from './Components/Button';
+
+
+import { FORM_INPUT_TYPE } from './Constants';
 
 interface FormValues {
   email: string;
@@ -20,7 +26,6 @@ interface FormValues {
 
 export interface Props {
   navigation: any;
-  formJoson: any;
 }
 
 const buttonStyle = {
@@ -28,18 +33,26 @@ const buttonStyle = {
   width: 100,
   padding: 10,
   justifyContent: 'center',
-  alignItems: 'center',
-};
+  alignItems: 'center'
+}
 
 const buttonTextStyle = {
   color: '#ffffff',
-  fontWeight: '500',
-};
+  fontWeight: '500'
+}
 
 export default class CreateEventForm extends React.Component<Props> {
   handleSubmit = () => {
-    console.log('kamal');
+    console.log('kamal')
   };
+
+  state = {
+    date: new Date()
+  }
+
+  onSetDate = (date: Date) => {
+    console.log(date);
+  }
 
   selectedItem = (checkBoxData: []) => {
     // const updatedCheckBoxOptions = checkBoxData.map(items => ({
@@ -60,35 +73,51 @@ export default class CreateEventForm extends React.Component<Props> {
     isSubmitting,
   }: FormikProps<FormValues>) => {
     const formJoson = this.props.navigation.state.params.formJoson;
-
-    // Adding selected key to options for checkbox
-    // const updatedCheckBoxOptions = checkBoxData.Options.map(items => ({...items, selected: false}))
-    // checkBoxData.Options = updatedCheckBoxOptions;
-
     return (
-      <View style={styles.container}>
-        {formJoson.fields.map(
-          (item: any) =>
-            item.input_type === 'multi_select' && (
-              <MultiSelectDropdownComponent
-                item={item}
-                selectedItem={this.selectedItem}
-                hideDropdownModal={this.hideDropdownModal}
-              />
-            ),
-        )}
-        <Button
-          title="Submit"
-          buttonStyle={buttonStyle}
-          buttonTextStyle={buttonTextStyle}
-          onClick={this.handleSubmit}
-        />
+        <ScrollView contentInsetAdjustmentBehavior="automatic" >
+          <View style={styles.container}>
+            {formJoson.fields.map((item: any) => {
+              switch (item.input_type ){
+                case FORM_INPUT_TYPE.DROPDOWN:
+                  return (
+                    <Dropdown formItem={item}/>
+                )
+                case FORM_INPUT_TYPE.CHECKBOX_GROUP:
+                  return (
+                    <CheckBoxGroup orientation={'vertical'} checkBoxData={item} />
+                )
+                case FORM_INPUT_TYPE.DATE_TIME:
+                  return (
+                  <DateTimePickerComponent
+                    initialDate = {new Date()}
+                    date={this.state.date}
+                    label = {item.label}
+                    mode={'datetime'}
+                    onChange={this.onSetDate} />
+                )
+                case FORM_INPUT_TYPE.MULTI_SELECT : 
+                return(
+                  <MultiSelectDropdownComponent
+                    item={item}
+                    selectedItem={this.selectedItem}
+                    hideDropdownModal={this.hideDropdownModal}
+                  />
+                )
+              }
+            })
+            }
+          <Button
+            title='Submit'
+            buttonStyle={buttonStyle}
+            buttonTextStyle={buttonTextStyle}
+            onClick={this.handleSubmit}
+          />
       </View>
-    );
+    </ScrollView>  
+    )
   };
 
   render() {
-    const formJoson = this.props.navigation.state.params.formJoson;
     return (
       <Formik initialValues={{email: '', password: ''}} onSubmit={() => {}}>
         {(formikBag: FormikProps<FormValues>) => this.renderForm(formikBag)}
@@ -99,12 +128,10 @@ export default class CreateEventForm extends React.Component<Props> {
 
 // styles
 const styles = StyleSheet.create({
+  
   container: {
-    flex: 1,
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
+    flex: 1
   },
-
   loginButtonContainer: {
     width: 200,
   },
@@ -112,8 +139,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
   },
   loginButtonTitle: {
-    color: 'white',
-    fontWeight: '500',
+    color: "white",
+    fontWeight: '500'
   },
   disabled: {
     backgroundColor: 'blue',
