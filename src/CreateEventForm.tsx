@@ -45,12 +45,8 @@ const buttonTextStyle = {
   fontWeight: '500'
 }
 
-<<<<<<< HEAD
 export default class CreateEventForm extends React.Component<Props, State> {
 
-=======
-export default class CreateEventForm extends React.Component<Props> {
->>>>>>> 99299b802f7b130c61fae9a278b3cec3c2838f8d
   handleSubmit = () => {
     console.log('kamal')
   };
@@ -89,17 +85,6 @@ export default class CreateEventForm extends React.Component<Props> {
   }: FormikProps<FormValues>) => {
     const formJoson = this.props.navigation.state.params.formJoson;
     return (
-<<<<<<< HEAD
-      <ScrollView contentInsetAdjustmentBehavior="automatic" >
-        <View style={styles.container}>
-          {formJoson.fields.map((item: any, index: number) => {
-            switch (item.input_type) {
-              case FORM_INPUT_TYPE.DROPDOWN:
-                return (
-                  <View key={index}>
-                    <Dropdown formItem={item} />
-                  </View>
-=======
         <ScrollView contentInsetAdjustmentBehavior="automatic" >
           <View style={styles.container}>
             {formJoson.fields.map((item: any, index: number) => {
@@ -109,7 +94,6 @@ export default class CreateEventForm extends React.Component<Props> {
                     <View key={index}>
                       <Dropdown formItem={item} getSelectedValue={this.getDropdownSelectedValue}/>
                     </View>
->>>>>>> 99299b802f7b130c61fae9a278b3cec3c2838f8d
                 )
               case FORM_INPUT_TYPE.CHECKBOX_GROUP:
                 return (
@@ -127,8 +111,6 @@ export default class CreateEventForm extends React.Component<Props> {
                       onChange={this.onSetDate} />
                   </View>
                 )
-<<<<<<< HEAD
-=======
                 case FORM_INPUT_TYPE.MULTI_SELECT : 
                 return(
                   <MultiSelectDropdownComponent
@@ -139,7 +121,6 @@ export default class CreateEventForm extends React.Component<Props> {
                 )
               }
             })
->>>>>>> 99299b802f7b130c61fae9a278b3cec3c2838f8d
             }
           })
           }
