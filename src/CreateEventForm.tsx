@@ -8,7 +8,8 @@ import {
   View,
   DatePickerIOS
 } from 'react-native';
-import { Formik, FormikProps } from "formik";
+import {Formik, FormikProps} from 'formik';
+import {MultiSelectDropdownComponent} from './MultiSelectDropdown';
 
 import Dropdown from './Components/Dropdown'
 import DateTimePickerComponent from './Components/DateTimePicker'
@@ -22,7 +23,6 @@ interface FormValues {
   email: string;
   password: string;
 }
-
 
 export interface Props {
   navigation: any;
@@ -45,8 +45,12 @@ const buttonTextStyle = {
   fontWeight: '500'
 }
 
+<<<<<<< HEAD
 export default class CreateEventForm extends React.Component<Props, State> {
 
+=======
+export default class CreateEventForm extends React.Component<Props> {
+>>>>>>> 99299b802f7b130c61fae9a278b3cec3c2838f8d
   handleSubmit = () => {
     console.log('kamal')
   };
@@ -60,6 +64,20 @@ export default class CreateEventForm extends React.Component<Props, State> {
       date: date
     })
   }
+ selectedItem = (checkBoxData: []) => {
+    // const updatedCheckBoxOptions = checkBoxData.map(items => ({
+    //   ...items,
+    //   selected: false,
+    // }));
+    // checkBoxData.Options = updatedCheckBoxOptions;
+  };
+
+// get dropdown selected value
+  getDropdownSelectedValue = (selectedValue: any, formItem: any) => {
+    // console.log(selectedValue, formItem)
+  }
+
+  hideDropdownModal = () => {};
 
   renderForm = ({
     values,
@@ -67,11 +85,11 @@ export default class CreateEventForm extends React.Component<Props, State> {
     touched,
     errors,
     setFieldTouched,
-    isSubmitting
+    isSubmitting,
   }: FormikProps<FormValues>) => {
-
     const formJoson = this.props.navigation.state.params.formJoson;
     return (
+<<<<<<< HEAD
       <ScrollView contentInsetAdjustmentBehavior="automatic" >
         <View style={styles.container}>
           {formJoson.fields.map((item: any, index: number) => {
@@ -81,6 +99,17 @@ export default class CreateEventForm extends React.Component<Props, State> {
                   <View key={index}>
                     <Dropdown formItem={item} />
                   </View>
+=======
+        <ScrollView contentInsetAdjustmentBehavior="automatic" >
+          <View style={styles.container}>
+            {formJoson.fields.map((item: any, index: number) => {
+              switch (item.input_type ){
+                case FORM_INPUT_TYPE.DROPDOWN:
+                  return (
+                    <View key={index}>
+                      <Dropdown formItem={item} getSelectedValue={this.getDropdownSelectedValue}/>
+                    </View>
+>>>>>>> 99299b802f7b130c61fae9a278b3cec3c2838f8d
                 )
               case FORM_INPUT_TYPE.CHECKBOX_GROUP:
                 return (
@@ -98,6 +127,19 @@ export default class CreateEventForm extends React.Component<Props, State> {
                       onChange={this.onSetDate} />
                   </View>
                 )
+<<<<<<< HEAD
+=======
+                case FORM_INPUT_TYPE.MULTI_SELECT : 
+                return(
+                  <MultiSelectDropdownComponent
+                    item={item}
+                    selectedItem={this.selectedItem}
+                    hideDropdownModal={this.hideDropdownModal}
+                  />
+                )
+              }
+            })
+>>>>>>> 99299b802f7b130c61fae9a278b3cec3c2838f8d
             }
           })
           }
@@ -119,7 +161,6 @@ export default class CreateEventForm extends React.Component<Props, State> {
       </Formik>
     );
   }
-
 }
 
 // styles
