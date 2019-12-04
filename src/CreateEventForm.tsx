@@ -55,6 +55,11 @@ export default class CreateEventForm extends React.Component<Props> {
     console.log(date);
   }
 
+  // get dropdown selected value
+  getDropdownSelectedValue = (selectedValue: any, formItem: any) => {
+    // console.log(selectedValue, formItem)
+  }
+
   renderForm = ({
     values,
     setFieldValue,
@@ -72,7 +77,7 @@ export default class CreateEventForm extends React.Component<Props> {
               switch (item.input_type ){
                 case FORM_INPUT_TYPE.DROPDOWN:
                   return (
-                    <Dropdown formItem={item}/>
+                    <Dropdown formItem={item} getSelectedValue={this.getDropdownSelectedValue}/>
                 )
                 case FORM_INPUT_TYPE.CHECKBOX_GROUP:
                   return (
