@@ -30,7 +30,17 @@ const CheckBoxGroup: any = ({ checkBoxData }: Props) => {
     function handleCheckBox(label: string) {
         let checkBoxOptionsCopy: CheckBoxOptionProps[] = [...checkBoxOptions];
         let index = checkBoxOptionsCopy.findIndex((item: CheckBoxOptionProps) => item.value === label);
-        checkBoxOptionsCopy[index].selected = !checkBoxOptionsCopy[index].selected;
+
+        checkBoxOptionsCopy.map((items: CheckBoxOptionProps, key: number) => {
+            if (index === key) {
+                return items.selected = !items.selected;
+            } else {
+                if (items.selected) {
+                    return items.selected = !items.selected;
+                }
+            }
+        })
+
         setCheckBoxOptions(checkBoxOptionsCopy);
     }
 
