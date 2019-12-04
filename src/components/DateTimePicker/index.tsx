@@ -7,7 +7,8 @@ interface DateTimePickerProps {
     onChange: Function;
     date: Date;
     mode: 'date' | 'time' | 'datetime';
-    initialDate: Date
+    initialDate: Date;
+    label: string;
 }
 
 export const DateTimePickerComponent: React.SFC<DateTimePickerProps> = (props) => {
@@ -31,11 +32,11 @@ export const DateTimePickerComponent: React.SFC<DateTimePickerProps> = (props) =
                     } }/>
                 </View>
               :
-               <View>
-               <Text>Visit Date</Text>
+               <View style = {styles.container}>
+               <Text style = {styles.label}>{props.label}</Text>
                <TouchableOpacity style={styles.dateContainer}
                                  onPress={() => setShowDatePicker(true)}>
-                   <Text>{props.mode === 'datetime' ? moment(selectedDate).format('DD/MM/YYYYHH:mm:ss'):
+                   <Text>{props.mode === 'datetime' ? moment(selectedDate).format('DD/MM/YYYY HH:mm:ss'):
                           props.mode === 'date' ?  moment(selectedDate).format('DD/MM/YYYY') :
                         moment(selectedDate).format('HH:mm:ss')
                 }</Text>
@@ -48,13 +49,20 @@ export const DateTimePickerComponent: React.SFC<DateTimePickerProps> = (props) =
 }
 
 const styles = StyleSheet.create({
+    container:{
+        flexDirection: 'row',
+        marginTop: 10
+    },
     dateContainer: {
         height: 40, 
         width: 300, 
-        padding: 4, 
-        borderColor: 'gray', 
-        borderWidth: 1
+        padding: 8, 
     },
+    label:{
+        padding: 8,
+        fontSize: 15,
+        fontWeight: 'bold'
+    }
 })
 
 export default DateTimePickerComponent;

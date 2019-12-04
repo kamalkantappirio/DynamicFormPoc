@@ -83,6 +83,7 @@ export default class CreateEventForm extends React.Component<Props> {
                   <DateTimePickerComponent
                     initialDate = {new Date()}
                     date={this.state.date}
+                    label = {item.label}
                     mode={'datetime'}
                     onChange={this.onSetDate} />
                 )
