@@ -6,8 +6,8 @@
  * @flow
  */
 
-import React from 'react'
-import { Component } from 'react';
+import React from 'react';
+import {Component} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,43 +15,39 @@ import {
   View,
   Text,
   StatusBar,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
-import formJoson from "../formJoson"; 
+import formJoson from '../formJoson';
 
-import {
-  Header,
-  Colors
-} from 'react-native/Libraries/NewAppScreen';
-
+import {Header, Colors} from 'react-native/Libraries/NewAppScreen';
 
 export interface Props {
   navigation: any;
 }
 
-export default class Welcome extends Component<Props>  {
-
+export default class Welcome extends Component<Props> {
   render() {
     const {navigate} = this.props.navigation;
     return (
       <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-         
-          <View style={styles.body}>
-            <TouchableOpacity onPress={() => navigate('CreateEventForm', { formJoson })}>
-              <View style={styles.button}>
-                <Text style={styles.buttonText}>NEXT</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+        <StatusBar barStyle="dark-content" />
+        <SafeAreaView>
+          <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            style={styles.scrollView}>
+            <Header />
+
+            <View style={styles.body}>
+              <TouchableOpacity
+                onPress={() => navigate('CreateEventForm', {formJoson})}>
+                <View style={styles.button}>
+                  <Text style={styles.buttonText}>NEXT</Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      </>
     );
   }
 }
@@ -67,7 +63,7 @@ const styles = StyleSheet.create({
   body: {
     backgroundColor: Colors.white,
     alignItems: 'center',
-    padding: 10
+    padding: 10,
   },
   sectionContainer: {
     marginTop: 32,
@@ -98,14 +94,11 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#ff0000',
     width: 100,
-    padding:10,
-    justifyContent:'center',
-    alignItems:'center'
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonText: {
-    color: '#ffffff'
-  }
-
-
+    color: '#ffffff',
+  },
 });
-
