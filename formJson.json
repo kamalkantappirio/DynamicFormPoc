@@ -1,107 +1,146 @@
 {
   "fields": [
-  {
-    "label": "Division", 
-    "api_name": "division__c", 
-    "input_type": "drop_down", 
-    "validation": "[{ validation_msg_key: 'empty_division', rule:'1 division must selected'}]", 
-    "options": [{ "value":"ortho__c", "label":"Ortho" }, { "value": "jr__c", "label": "JR/T" }, { "value": "spine__c", "label": "Spine" }], 
-    "serviceCallName": null, 
-    "isSingleSelect": true, 
-    "dependentValue": null, 
-    "selectedValues":"" 
-  }, 
-  { 
-    "label": "Branch", 
-    "api_name": "branch__c", 
-    "input_type": "drop_down", 
-    "validation": "[{ validation_msg_key: 'empty_brnach', rule:'1 branch must selected'}]", 
-    "options": [{ "value": "North", "label": "North" }, { "value": "East", "label": "East" }], 
-    "serviceCallName": null, 
-    "isSingleSelect": true, 
-    "dependentValue": "division__c", 
-    "selectedValues":"''" 
-  },
-  { 
-    "label": "Hospital", 
-    "api_name": "hospital__c", 
-    "input_type": "drop_down", 
-    "validation": "[{ validation_msg_key: 'empty_hospital', rule:'1 hospital must selected'}]", 
-    "options": [{ "value": "mayo", "label": "Mayo Clinic, Rochester, MN" }, { "value": "Cleveland Clinic.", "label": "Cleveland Clinic." }, { "value": "UCLA Medical Center.", "label": "UCLA Medical Center." }], 
-    "serviceCallName": null, 
-    "isSingleSelect": true, 
-    "dependentValue": "branch__c", 
-    "selectedValues":"" 
-  },
-  { 
-    "label": "Hospital Location", 
-    "api_name": "hospital_location__c", 
-    "input_type": "drop_down", 
-    "validation": "[{ validation_msg_key: 'empty_hospital_location', rule:'1 hospital location must selected'}]", 
-    "options": [{ "value": "1", "label": "Jaipur" }], 
-    "serviceCallName": null, 
-    "isSingleSelect": true, 
-    "dependentValue": "hospital__c", 
-    "selectedValues":"" 
-  },
-  { 
-    "label": "Patient Id", 
-    "api_name": "patient_id__c", 
-    "input_type": "input", 
-    "validation": [], 
-    "options": [], 
-    "serviceCallName": null, 
-    "isSingleSelect": false, 
-    "dependentValue": null, 
-    "selectedValues":"" 
-  },
-  { 
-    "label": "Body Parts", 
-    "api_name": "body_parts__c", 
-    "input_type": "checkbox_group", 
-    "validation": [], 
-    "options": [{
-        "label":"Left",
-        "value": "left"
-      },
-      {
-        "label":"Right",
-        "value": "right"
-      }
-    ], 
-    "serviceCallName": null, 
-    "isSingleSelect": false, 
-    "dependentValue": null, 
-    "selectedValues":"" 
-  },
-  { 
-    "label": "Procedures", 
-    "api_name": "procedures__c", 
-    "input_type": "multi_select",  
-    "validation": "[{ validation_msg_key: 'empty_procedures', rule:'select 1 procedure'}]", 
-    "options": [ {
-      "label":"Hip",
-      "value": "Hip"
+    {
+      "label": "Division",
+      "api_name": "division__c",
+      "input_type": "drop_down",
+      "validation": "[{ validation_msg_key: 'empty_division', rule:'1 division must selected'}]",
+      "options": [
+        {
+          "value": "ortho__c",
+          "label": "Ortho"
+        },
+        {
+          "value": "jr__c",
+          "label": "JR/T"
+        },
+        {
+          "value": "spine__c",
+          "label": "Spine"
+        }
+      ],
+      "serviceCallName": null,
+      "isSingleSelect": true,
+      "dependentValue": null,
+      "selectedValues": ""
     },
     {
-      "label":"Knee",
-      "value": "knee"
-    }], 
-    "serviceCallName": null, 
-    "isSingleSelect": false, 
-    "dependentValue": "branch__c", 
-    "selectedValues":"''" 
-  },
-  { 
-    "label": "Surgery Date", 
-    "api_name": "surgery_date__c", 
-    "input_type": "datetime", 
-    "validation": "[{ validation_msg_key: 'empty_surgeory_date', rule:'select date'}]", 
-    "options": [], 
-    "serviceCallName": null, 
-    "isSingleSelect": false, 
-    "dependentValue": null, 
-    "selectedValues":"" 
-  }
-]
+      "label": "Branch",
+      "api_name": "branch__c",
+      "input_type": "drop_down",
+      "validation": "[{ validation_msg_key: 'empty_brnach', rule:'1 branch must selected'}]",
+      "options": [
+        {
+          "value": "North",
+          "label": "North"
+        },
+        {
+          "value": "East",
+          "label": "East"
+        }
+      ],
+      "serviceCallName": null,
+      "isSingleSelect": true,
+      "dependentValue": "division__c",
+      "selectedValues": "''"
+    },
+    {
+      "label": "Hospital",
+      "api_name": "hospital__c",
+      "input_type": "drop_down",
+      "validation": "[{ validation_msg_key: 'empty_hospital', rule:'1 hospital must selected'}]",
+      "options": [
+        {
+          "value": "mayo",
+          "label": "Mayo Clinic, Rochester, MN"
+        },
+        {
+          "value": "Cleveland Clinic.",
+          "label": "Cleveland Clinic."
+        },
+        {
+          "value": "UCLA Medical Center.",
+          "label": "UCLA Medical Center."
+        }
+      ],
+      "serviceCallName": null,
+      "isSingleSelect": true,
+      "dependentValue": "branch__c",
+      "selectedValues": ""
+    },
+    {
+      "label": "Hospital Location",
+      "api_name": "hospital_location__c",
+      "input_type": "drop_down",
+      "validation": "[{ validation_msg_key: 'empty_hospital_location', rule:'1 hospital location must selected'}]",
+      "options": [
+        {
+          "value": "1",
+          "label": "Jaipur"
+        }
+      ],
+      "serviceCallName": null,
+      "isSingleSelect": true,
+      "dependentValue": "hospital__c",
+      "selectedValues": ""
+    },
+    {
+      "label": "Patient Id",
+      "api_name": "patient_id__c",
+      "input_type": "input",
+      "validation": [],
+      "options": [],
+      "serviceCallName": null,
+      "isSingleSelect": false,
+      "dependentValue": null,
+      "selectedValues": ""
+    },
+    {
+      "label": "Body Parts",
+      "api_name": "body_parts__c",
+      "input_type": "checkbox_group",
+      "validation": [],
+      "options": [
+        {
+          "label": "Left",
+          "value": "left"
+        },
+        {
+          "label": "Right",
+          "value": "right"
+        }
+      ],
+      "serviceCallName": null,
+      "isSingleSelect": false,
+      "dependentValue": null,
+      "selectedValues": ""
+    },
+    {
+      "label": "Procedures",
+      "api_name": "procedures__c",
+      "input_type": "multi_select",
+      "validation": "[{ validation_msg_key: 'empty_procedures', rule:'select 1 procedure'}]",
+      "options": [
+        {
+          "label": "Hip",
+          "value": "Hip"
+        }
+      ],
+      "serviceCallName": null,
+      "isSingleSelect": false,
+      "dependentValue": null,
+      "selectedValues": ""
+    },
+    {
+      "label": "Surgery Date",
+      "api_name": "surgery_date__c",
+      "input_type": "datetime",
+      "validation": "[{ validation_msg_key: 'empty_surgeory_date', rule:'select date'}]",
+      "options": [],
+      "serviceCallName": null,
+      "isSingleSelect": false,
+      "dependentValue": null,
+      "selectedValues": ""
+    }
+  ]
 }
