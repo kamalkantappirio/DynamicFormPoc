@@ -11,6 +11,7 @@ import {
 import { Formik, FormikProps } from "formik";
 import DateTimePickerComponent from './Components/DateTimePicker'
 import Button from './Components/Button';
+import { FORM_INPUT_TYPE } from './Constants.js';
 
 interface FormValues {
   email: string;
@@ -61,10 +62,10 @@ export default class CreateEventForm extends React.Component<Props> {
     const formJoson = this.props.navigation.state.params.formJoson;
     return (
       <View style={styles.container}>
-        {formJoson.fields.map((item: any) => {
-          if (item.input_type === 'datetime') {
+        {formJoson.fields.map((item: any, index: number) => {
+          if (item.input_type === FORM_INPUT_TYPE.DATE_TIME) {
             return (
-              <View>
+              <View key={index}>
                 <DateTimePickerComponent
                   initialDate = {new Date()}
                   date={this.state.date}
