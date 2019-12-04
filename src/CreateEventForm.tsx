@@ -10,7 +10,10 @@ import {
 } from 'react-native';
 import { Formik, FormikProps } from "formik";
 import DateTimePickerComponent from './Components/DateTimePicker'
+import CheckBoxGroup from './Components/CheckBoxGroup'
 import Button from './Components/Button';
+
+
 import { FORM_INPUT_TYPE } from './Constants.js';
 
 interface FormValues {
@@ -63,15 +66,19 @@ export default class CreateEventForm extends React.Component<Props> {
     return (
       <View style={styles.container}>
         {formJoson.fields.map((item: any, index: number) => {
-          if (item.input_type === FORM_INPUT_TYPE.DATE_TIME) {
-            return (
-              <View key={index}>
-                <DateTimePickerComponent
-                  initialDate = {new Date()}
-                  date={this.state.date}
-                  mode={'date'}
-                  onChange={this.onSetDate} />
-              </View>
+
+          switch (item.input_type ){
+            case FORM_INPUT_TYPE.CHECKBOX_GROUP:
+              return (
+                <View></View>
+            )
+            case FORM_INPUT_TYPE.DATE_TIME:
+              return (
+              <DateTimePickerComponent
+                initialDate = {new Date()}
+                date={this.state.date}
+                mode={'date'}
+                onChange={this.onSetDate} />
             )
           }
         })
