@@ -28,5 +28,6 @@ const styles = StyleSheet.create({
   },
   label: {
     flex: 0.9,
+    height: 20,
   },
 });

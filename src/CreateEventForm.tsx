@@ -90,13 +90,9 @@ export default class CreateEventForm extends React.Component<Props> {
   render() {
     const formJoson = this.props.navigation.state.params.formJoson;
     return (
-      <Formik
-        initialValues={{email: '', password: ''}}
-        onSubmit={() => {}}
-        render={(formikBag: FormikProps<FormValues>) =>
-          this.renderForm(formikBag)
-        }
-      />
+      <Formik initialValues={{email: '', password: ''}} onSubmit={() => {}}>
+        {(formikBag: FormikProps<FormValues>) => this.renderForm(formikBag)}
+      </Formik>
     );
   }
 }

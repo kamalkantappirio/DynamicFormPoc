@@ -30,17 +30,17 @@ interface Props {
 
 interface State {}
 
-export const MultiSelectDropdownComponent: React.SFC<Props> = props => {
+export const MultiSelectDropdownComponent: React.FC<Props> = props => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedProcedure, setProcedure] = useState([]);
 
   const procedures = props.item;
 
-  function selectItem() {
+  const selectItem = () => {
     console.log('selectedProcedure', selectedProcedure);
     props.selectedItem(selectedProcedure);
     setModalVisible(false);
-  }
+  };
 
   function setSelectedProcedure(item: []) {
     console.log('procedure', item);
@@ -70,48 +70,58 @@ export const MultiSelectDropdownComponent: React.SFC<Props> = props => {
 
   return (
     <View style={{flex: 1, flexDirection: 'row', paddingTop: 50}}>
-      <TouchableOpacity
-        style={{flexDirection: 'row', flex: 1, flexWrap: 'wrap'}}
-        onPress={() => setModalVisible(!modalVisible)}>
-        {procedures.selectedValues.length === 0
-          ? placeHolderView
-          : procedures.selectedValues &&
-            procedures.selectedValues.map(singleSelectedItem =>
-              _renderSelectedIcon(singleSelectedItem),
-            )}
-      </TouchableOpacity>
+      <View
+        style={{
+          marginHorizontal: 16,
+          borderWidth: 1,
+          flex: 1,
+          height: 40,
+          borderColor: 'rgba(0, 0, 0, 0.1)',
+          borderRadius: 8,
+        }}>
+        <TouchableOpacity
+          style={{flexDirection: 'row', flex: 1, flexWrap: 'wrap'}}
+          onPress={() => setModalVisible(!modalVisible)}>
+          {procedures.selectedValues.length === 0
+            ? placeHolderView
+            : procedures.selectedValues &&
+              procedures.selectedValues.map(singleSelectedItem =>
+                _renderSelectedIcon(singleSelectedItem),
+              )}
+        </TouchableOpacity>
+      </View>
 
       <Modal visible={modalVisible} animationType="slide">
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'row',
-            paddingTop: 46,
-            maxHeight: 40,
-          }}>
-          <TouchableOpacity
-            onPress={() => setModalVisible(!modalVisible)}
-            style={styles.header}>
-            <Icon
-              type="Ionicons"
-              name="arrow-dropleft"
-              style={{paddingBottom: 5}}
-            />
-          </TouchableOpacity>
-          <Text style={styles.headerLabel}> {procedures.label} </Text>
-          <TouchableOpacity onPress={() => selectItem()} style={styles.header}>
-            <Text style={styles.done}> Done </Text>
-          </TouchableOpacity>
-        </View>
         <View style={{flex: 1, flexDirection: 'column'}}>
-          {renderDropdownList()}
-          {/* <FlatList
-            data={procedures.Options}
-            renderItem={item => {
-              return renderDropdownList(item);
-            }}
-            keyExtractor={(item, index) => `${index}`}
-          /> */}
+          <View
+            style={{
+              flex: 0.05,
+              flexDirection: 'row',
+              paddingTop: 46,
+              paddingHorizontal: 12,
+              borderBottomWidth: 1,
+            }}>
+            <TouchableOpacity
+              onPress={() => setModalVisible(!modalVisible)}
+              style={styles.header}>
+              <Icon
+                type="Ionicons"
+                name="arrow-dropleft"
+                style={{paddingBottom: 5}}
+              />
+            </TouchableOpacity>
+            <Text style={styles.headerLabel}> {procedures.label} </Text>
+            <TouchableOpacity
+              onPress={() => selectItem()}
+              style={styles.doneButton}>
+              <Text style={styles.done}> Done </Text>
+            </TouchableOpacity>
+          </View>
+          <View style={{flex: 0.8, flexDirection: 'row'}}>
+            <View style={{flex: 1, flexDirection: 'column'}}>
+              {renderDropdownList()}
+            </View>
+          </View>
         </View>
       </Modal>
     </View>
@@ -127,10 +137,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {
-    backgroundColor: 'yellow',
     flexDirection: 'row',
     flex: 1,
     justifyContent: 'space-between',
+  },
+  doneButton: {
+    flexDirection: 'row',
+    flex: 1,
+    justifyContent: 'flex-end',
   },
   headerLabel: {fontSize: 20, paddingBottom: 10},
   done: {color: 'black', fontSize: 20, paddingBottom: 10},
@@ -150,5 +164,10 @@ const styles = StyleSheet.create({
   pickerLblText: {
     color: '#B2B4AE',
     fontSize: 16,
+    paddingLeft: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    paddingTop: 8,
   },
 });
