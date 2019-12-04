@@ -28,7 +28,7 @@ const CheckBoxGroup: React.FC<Props> = ({ checkBoxData }: Props) => {
 
     const [checkBoxOptions, setCheckBoxOptions] = useState(checkBoxData.options);
 
-    function handleCheckBox(label: string) {
+    const handleCheckBox = (label: string) =>{
         let checkBoxOptionsCopy: CheckBoxOptionProps[] = [...checkBoxOptions];
         const index = checkBoxOptionsCopy.findIndex((item: CheckBoxOptionProps) => item.value === label);
 
@@ -43,15 +43,16 @@ const CheckBoxGroup: React.FC<Props> = ({ checkBoxData }: Props) => {
         setCheckBoxOptions(checkBoxOptionsCopy);
     }
 
-    function checkBoxElement() {
+    const checkBoxElement = () => {
         return (
             checkBoxOptions.map((items: CheckBoxOptionProps, key: number) => (<CheckBoxComponent key={key} value={items.value} name={items.label} selected={items.selected} _handleChange={handleCheckBox} />)))
     }
 
     return (
-        <React.Fragment>
+        <>
             {checkBoxElement()}
-        </React.Fragment>)
+        </>
+    )
 }
 
 export default CheckBoxGroup;
