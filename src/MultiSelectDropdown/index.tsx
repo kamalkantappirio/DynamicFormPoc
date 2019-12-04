@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 import {Card, Icon, Item} from 'native-base';
-import CheckBoxGroup from '../Components/CheckBoxGroup';
+import CheckBoxGroup from '../MultiSelectDropdown/DropdownGroup';
 var {height, width} = Dimensions.get('window');
 
 interface Props {
@@ -72,25 +72,30 @@ export const MultiSelectDropdownComponent: React.FC<Props> = props => {
 
   return (
     <View style={{flex: 1, flexDirection: 'row', paddingTop: 50}}>
-      <View
-        style={{
-          marginHorizontal: 16,
-          borderWidth: 1,
-          flex: 1,
-          height: 40,
-          borderColor: 'rgba(0, 0, 0, 0.1)',
-          borderRadius: 8,
-        }}>
-        <TouchableOpacity
-          style={{flexDirection: 'row', flex: 1, flexWrap: 'wrap'}}
-          onPress={() => setModalVisible(!modalVisible)}>
-          {procedures.selectedValues.length === 0
-            ? placeHolderView
-            : procedures.selectedValues &&
-              procedures.selectedValues.map(singleSelectedItem =>
-                _renderSelectedIcon(singleSelectedItem),
-              )}
-        </TouchableOpacity>
+      <View style={{flex: 1, flexDirection: 'column'}}>
+        <View style={{paddingLeft: 16}}>
+          <Text> {procedures.label} </Text>
+        </View>
+        <View
+          style={{
+            marginHorizontal: 16,
+            borderWidth: 1,
+            flex: 1,
+            height: 40,
+            borderColor: 'rgba(0, 0, 0, 0.1)',
+            borderRadius: 8,
+          }}>
+          <TouchableOpacity
+            style={{flexDirection: 'row', flex: 1, flexWrap: 'wrap'}}
+            onPress={() => setModalVisible(!modalVisible)}>
+            {procedures.selectedValues.length === 0
+              ? placeHolderView
+              : procedures.selectedValues &&
+                procedures.selectedValues.map(singleSelectedItem =>
+                  _renderSelectedIcon(singleSelectedItem),
+                )}
+          </TouchableOpacity>
+        </View>
       </View>
 
       <Modal visible={modalVisible} animationType="slide">
