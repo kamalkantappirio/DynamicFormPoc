@@ -52,10 +52,6 @@ export default class CreateEventForm extends React.Component<Props> {
 
     const formJoson = this.props.navigation.state.params.formJoson;
 
-    // Adding selected key to options for checkbox
-    // const updatedCheckBoxOptions = checkBoxData.Options.map(items => ({...items, selected: false}))
-    // checkBoxData.Options = updatedCheckBoxOptions;
-
     return(
     <View style={styles.container}>
       {formJoson.fields.map((item:any) => (<Text>{item.label}</Text>))}

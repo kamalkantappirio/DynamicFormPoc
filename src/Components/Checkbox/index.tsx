@@ -25,7 +25,9 @@ interface Props {
 
 const CheckBoxGroup: any = ({ checkBoxData }: Props) => {
 
-    const [checkBoxOptions, setCheckBoxOptions] = useState(checkBoxData.Options);
+    const updatedCheckBoxOptions = checkBoxData.Options.map(items => ({...items, selected: false}))
+
+    const [checkBoxOptions, setCheckBoxOptions] = useState(updatedCheckBoxOptions);
 
     function handleCheckBox(label: string) {
         let checkBoxOptionsCopy: CheckBoxOptionProps[] = [...checkBoxOptions];
