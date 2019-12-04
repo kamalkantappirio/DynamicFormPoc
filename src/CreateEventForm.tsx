@@ -9,8 +9,8 @@ import {
   DatePickerIOS
 } from 'react-native';
 import { Formik, FormikProps } from "formik";
-import Button from './Button';
-import DateTimePickerComponent from './components/DateTimePicker'
+import DateTimePickerComponent from './Components/DateTimePicker'
+import Button from './Components/Button';
 
 interface FormValues {
   email: string;
@@ -57,6 +57,7 @@ export default class CreateEventForm extends React.Component<Props> {
     setFieldTouched,
     isSubmitting
   }: FormikProps<FormValues>) => {
+
     const formJoson = this.props.navigation.state.params.formJoson;
     return (
       <View style={styles.container}>
