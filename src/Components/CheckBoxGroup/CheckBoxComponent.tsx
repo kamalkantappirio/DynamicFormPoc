@@ -11,7 +11,7 @@ interface Props {
     _handleChange(arg: string): any;
 }
 
-const CheckBoxComponent = ({ name, selected, value, _handleChange }: Props) => {
+const CheckBoxComponent: React.FC<Props> = ({ name, selected, value, _handleChange }: Props) => {
     return (
         <View style={styles.root}>
             <Text style={styles.label}>{name}</Text>

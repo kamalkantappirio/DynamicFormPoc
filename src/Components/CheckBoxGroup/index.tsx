@@ -20,10 +20,11 @@ interface CheckBoxProps {
 }
 
 interface Props {
-    checkBoxData: CheckBoxProps
+    checkBoxData: CheckBoxProps,
+    orientation: 'horizontal' | 'vertical'
 }
 
-const CheckBoxGroup: any = ({ checkBoxData }: Props) => {
+const CheckBoxGroup: React.FC<Props> = ({ checkBoxData }: Props) => {
 
     const [checkBoxOptions, setCheckBoxOptions] = useState(checkBoxData.Options);
 

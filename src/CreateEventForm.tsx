@@ -76,7 +76,7 @@ export default class CreateEventForm extends React.Component<Props> {
               )
               case FORM_INPUT_TYPE.CHECKBOX_GROUP:
                 return (
-                  <CheckBoxGroup checkBoxData={item} />
+                  <CheckBoxGroup checkBoxData={item} ori />
               )
               case FORM_INPUT_TYPE.DATE_TIME:
                 return (
