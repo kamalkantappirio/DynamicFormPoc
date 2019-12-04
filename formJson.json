@@ -38,7 +38,7 @@
     "api_name": "hospital_location__c", 
     "input_type": "drop_down", 
     "validation": "[{ validation_msg_key: 'empty_hospital_location', rule:'1 hospital location must selected'}]", 
-    "options": [{ "value": "1", "label": "Jaipur" }, { "value": "2", "label": "Ajmer" }, { "value": "3", "label": "Delhi" }], 
+    "options": [{ "value": "1", "label": "Jaipur" }], 
     "serviceCallName": null, 
     "isSingleSelect": true, 
     "dependentValue": "hospital__c", 
