@@ -12,7 +12,7 @@ import { Formik, FormikProps } from "formik";
 
 import Dropdown from './Components/Dropdown'
 import DateTimePickerComponent from './Components/DateTimePicker'
-import CheckBoxGroup from './Components/CheckBoxGroup'
+import RadioGroup from './Components/RadioGroup'
 import Button from './Components/Button';
 
 
@@ -73,24 +73,30 @@ export default class CreateEventForm extends React.Component<Props> {
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic" >
           <View style={styles.container}>
-            {formJoson.fields.map((item: any) => {
+            {formJoson.fields.map((item: any, index: number) => {
               switch (item.input_type ){
                 case FORM_INPUT_TYPE.DROPDOWN:
                   return (
-                    <Dropdown formItem={item} getSelectedValue={this.getDropdownSelectedValue}/>
+                    <View key={index}>
+                      <Dropdown formItem={item} getSelectedValue={this.getDropdownSelectedValue}/>
+                    </View>
                 )
                 case FORM_INPUT_TYPE.CHECKBOX_GROUP:
                   return (
-                    <CheckBoxGroup orientation={'vertical'} checkBoxData={item} />
+                    <View key={index}>
+                      <RadioGroup orientation={'vertical'} checkBoxData={item} />
+                    </View>
                 )
                 case FORM_INPUT_TYPE.DATE_TIME:
                   return (
-                  <DateTimePickerComponent
-                    initialDate = {new Date()}
-                    date={this.state.date}
-                    label = {item.label}
-                    mode={'datetime'}
-                    onChange={this.onSetDate} />
+                    <View key={index}>
+                      <DateTimePickerComponent
+                        initialDate = {new Date()}
+                        date={this.state.date}
+                        label = {item.label}
+                        mode={'datetime'}
+                        onChange={this.onSetDate} />
+                    </View>
                 )
               }
             })
@@ -108,11 +114,9 @@ export default class CreateEventForm extends React.Component<Props> {
 
   render() {
     return (
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        onSubmit={() => { }}
-        render={(formikBag: FormikProps<FormValues>) => this.renderForm(formikBag)}
-      />
+      <Formik initialValues={{email: '', password: ''}} onSubmit={() => {}}>
+        {(formikBag: FormikProps<FormValues>) => this.renderForm(formikBag)}
+      </Formik>
     );
   }
 
@@ -122,20 +126,8 @@ export default class CreateEventForm extends React.Component<Props> {
 const styles = StyleSheet.create({
   
   container: {
-    flex: 1
-  },
-  loginButtonContainer: {
-    width: 200
-  },
-  loginButton: {
-    backgroundColor: 'blue'
-  },
-  loginButtonTitle: {
-    color: "white",
-    fontWeight: '500'
-  },
-  disabled: {
-    backgroundColor: 'blue',
-    opacity: 0.3
+    flex: 1,
+    alignItems:'center',
+    justifyContent:'center'
   }
 });
