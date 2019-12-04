@@ -68,27 +68,27 @@ export default class CreateEventForm extends React.Component<Props> {
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic" >
           <View style={styles.container}>
-          {formJoson.fields.map((item: any, index: number) => {
-            switch (item.input_type ){
-              case FORM_INPUT_TYPE.DROPDOWN:
-                return (
-                  <Dropdown formItem={item}/>
-              )
-              case FORM_INPUT_TYPE.CHECKBOX_GROUP:
-                return (
-                  <CheckBoxGroup checkBoxData={item} ori />
-              )
-              case FORM_INPUT_TYPE.DATE_TIME:
-                return (
-                <DateTimePickerComponent
-                  initialDate = {new Date()}
-                  date={this.state.date}
-                  mode={'date'}
-                  onChange={this.onSetDate} />
-              )
+            {formJoson.fields.map((item: any) => {
+              switch (item.input_type ){
+                case FORM_INPUT_TYPE.DROPDOWN:
+                  return (
+                    <Dropdown formItem={item}/>
+                )
+                case FORM_INPUT_TYPE.CHECKBOX_GROUP:
+                  return (
+                    <CheckBoxGroup checkBoxData={item} />
+                )
+                case FORM_INPUT_TYPE.DATE_TIME:
+                  return (
+                  <DateTimePickerComponent
+                    initialDate = {new Date()}
+                    date={this.state.date}
+                    mode={'date'}
+                    onChange={this.onSetDate} />
+                )
+              }
+            })
             }
-          })
-          }
           <Button
             title='Submit'
             buttonStyle={buttonStyle}
@@ -101,7 +101,6 @@ export default class CreateEventForm extends React.Component<Props> {
   };
 
   render() {
-    const formJoson = this.props.navigation.state.params.formJoson;
     return (
       <Formik
         initialValues={{ email: "", password: "" }}

@@ -24,21 +24,19 @@ interface Props {
     orientation: 'horizontal' | 'vertical'
 }
 
-const CheckBoxGroup: React.FC<Props> = ({ checkBoxData }: Props) => {
+const CheckBoxGroup = ({ checkBoxData }: Props) => {
 
     const [checkBoxOptions, setCheckBoxOptions] = useState(checkBoxData.Options);
 
     function handleCheckBox(label: string) {
         let checkBoxOptionsCopy: CheckBoxOptionProps[] = [...checkBoxOptions];
-        let index = checkBoxOptionsCopy.findIndex((item: CheckBoxOptionProps) => item.value === label);
-
+        const index = checkBoxOptionsCopy.findIndex((item: CheckBoxOptionProps) => item.value === label);
+        
         checkBoxOptionsCopy.map((items: CheckBoxOptionProps, key: number) => {
             if (index === key) {
                 return items.selected = !items.selected;
-            } else {
-                if (items.selected) {
-                    return items.selected = !items.selected;
-                }
+            } else if (items.selected) {
+                return items.selected = !items.selected;
             }
         })
 
@@ -46,9 +44,7 @@ const CheckBoxGroup: React.FC<Props> = ({ checkBoxData }: Props) => {
     }
 
     return (
-        checkBoxOptions.map((items: CheckBoxOptionProps, key: number) => {
-            return <CheckBoxComponent key={key} value={items.value} name={items.label} selected={items.selected} _handleChange={handleCheckBox} />
-        }))
+        checkBoxOptions.map((items: CheckBoxOptionProps, key: number) => (<CheckBoxComponent key={key} value={items.value} name={items.label} selected={items.selected} _handleChange={handleCheckBox} />)))
 }
 
 export default CheckBoxGroup;
