@@ -8,7 +8,7 @@ import {
   StyleSheet,
   Dimensions
 } from 'react-native';
-import { Card, Icon } from 'native-base';
+import { Card } from 'native-base';
 var { height, width } = Dimensions.get('window');
 
 
@@ -35,7 +35,7 @@ interface State {
   modalVisible: boolean;
 }
 
-class DropdownComponent extends React.Component<Props, State> {
+export default class Dropdown extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
@@ -82,7 +82,7 @@ class DropdownComponent extends React.Component<Props, State> {
           <TouchableOpacity
             onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}
             style={styles.header}>
-            <Icon type={'AntDesign'} name={'arrowleft'} style={{ paddingBottom: 5 }} />
+            
             <Text style={styles.headerLabel}> {this.props.formItem.label} </Text>
             <Text style={styles.done}> Done </Text>
           </TouchableOpacity>
@@ -132,4 +132,3 @@ const styles = StyleSheet.create({
   done: { color: 'black', fontSize: 20, paddingBottom: 10 },
 });
 
-export { DropdownComponent };

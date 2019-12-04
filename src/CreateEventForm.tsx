@@ -9,12 +9,13 @@ import {
   DatePickerIOS
 } from 'react-native';
 import { Formik, FormikProps } from "formik";
+import Dropdown from './Components/Dropdown'
 import DateTimePickerComponent from './Components/DateTimePicker'
 import CheckBoxGroup from './Components/CheckBoxGroup'
 import Button from './Components/Button';
 
 
-import { FORM_INPUT_TYPE } from './Constants.js';
+import { FORM_INPUT_TYPE } from './Constants';
 
 interface FormValues {
   email: string;
@@ -68,6 +69,10 @@ export default class CreateEventForm extends React.Component<Props> {
         {formJoson.fields.map((item: any, index: number) => {
 
           switch (item.input_type ){
+            case FORM_INPUT_TYPE.DROPDOWN:
+              return (
+                <Dropdown formItem={item}/>
+            )
             case FORM_INPUT_TYPE.CHECKBOX_GROUP:
               return (
                 <View></View>
