@@ -8,7 +8,8 @@ import {
   View,
   DatePickerIOS
 } from 'react-native';
-import { Formik, FormikProps } from "formik";
+import {Formik, FormikProps} from 'formik';
+import {MultiSelectDropdownComponent} from './MultiSelectDropdown';
 
 import Dropdown from './Components/Dropdown'
 import DateTimePickerComponent from './Components/DateTimePicker'
@@ -22,7 +23,6 @@ interface FormValues {
   email: string;
   password: string;
 }
-
 
 export interface Props {
   navigation: any;
@@ -42,7 +42,6 @@ const buttonTextStyle = {
 }
 
 export default class CreateEventForm extends React.Component<Props> {
-
   handleSubmit = () => {
     console.log('kamal')
   };
@@ -55,15 +54,24 @@ export default class CreateEventForm extends React.Component<Props> {
     console.log(date);
   }
 
+  selectedItem = (checkBoxData: []) => {
+    // const updatedCheckBoxOptions = checkBoxData.map(items => ({
+    //   ...items,
+    //   selected: false,
+    // }));
+    // checkBoxData.Options = updatedCheckBoxOptions;
+  };
+
+  hideDropdownModal = () => {};
+
   renderForm = ({
     values,
     setFieldValue,
     touched,
     errors,
     setFieldTouched,
-    isSubmitting
+    isSubmitting,
   }: FormikProps<FormValues>) => {
-
     const formJoson = this.props.navigation.state.params.formJoson;
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic" >
@@ -93,6 +101,14 @@ export default class CreateEventForm extends React.Component<Props> {
                         onChange={this.onSetDate} />
                     </View>
                 )
+                case FORM_INPUT_TYPE.MULTI_SELECT : 
+                return(
+                  <MultiSelectDropdownComponent
+                    item={item}
+                    selectedItem={this.selectedItem}
+                    hideDropdownModal={this.hideDropdownModal}
+                  />
+                )
               }
             })
             }
@@ -114,7 +130,6 @@ export default class CreateEventForm extends React.Component<Props> {
       </Formik>
     );
   }
-
 }
 
 // styles
