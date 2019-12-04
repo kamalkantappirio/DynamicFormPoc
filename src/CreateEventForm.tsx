@@ -53,14 +53,18 @@ export default class CreateEventForm extends React.Component<Props> {
   onSetDate = (date: Date) => {
     console.log(date);
   }
-
-  selectedItem = (checkBoxData: []) => {
+ selectedItem = (checkBoxData: []) => {
     // const updatedCheckBoxOptions = checkBoxData.map(items => ({
     //   ...items,
     //   selected: false,
     // }));
     // checkBoxData.Options = updatedCheckBoxOptions;
   };
+
+// get dropdown selected value
+  getDropdownSelectedValue = (selectedValue: any, formItem: any) => {
+    // console.log(selectedValue, formItem)
+  }
 
   hideDropdownModal = () => {};
 
@@ -81,7 +85,7 @@ export default class CreateEventForm extends React.Component<Props> {
                 case FORM_INPUT_TYPE.DROPDOWN:
                   return (
                     <View key={index}>
-                      <Dropdown formItem={item} />
+                      <Dropdown formItem={item} getSelectedValue={this.getDropdownSelectedValue}/>
                     </View>
                 )
                 case FORM_INPUT_TYPE.CHECKBOX_GROUP:
