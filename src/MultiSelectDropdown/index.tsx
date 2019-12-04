@@ -9,7 +9,7 @@ import {
   Dimensions,
 } from 'react-native';
 import {Card, Icon, Item} from 'native-base';
-import CheckBoxGroup from '../checkbox/CheckBoxGroup';
+import CheckBoxGroup from '../Components/CheckBoxGroup';
 var {height, width} = Dimensions.get('window');
 
 interface Props {
@@ -35,6 +35,8 @@ export const MultiSelectDropdownComponent: React.FC<Props> = props => {
   const [selectedProcedure, setProcedure] = useState([]);
 
   const procedures = props.item;
+  console.log('procedures', procedures);
+  console.log('props', props);
 
   const selectItem = () => {
     console.log('selectedProcedure', selectedProcedure);

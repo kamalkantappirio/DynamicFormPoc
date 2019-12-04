@@ -16,7 +16,7 @@
       "api_name": "branch__c",
       "input_type": "drop_down",
       "validation": "[{ validation_msg_key: 'empty_brnach', rule:'1 branch must selected'}]",
-      "Options": "[{ value:'ortho__c', label:'Ortho' }, { value:'jr__c', label:'JR/T' }, { value:'spine__c', label:'Spine' }]",
+      "options": "[{ value:'ortho__c', label:'Ortho' }, { value:'jr__c', label:'JR/T' }, { value:'spine__c', label:'Spine' }]",
       "serviceCallName": null,
       "isSingleSelect": true,
       "dependentValue": "division__c",
@@ -27,7 +27,7 @@
       "api_name": "hospital__c",
       "input_type": "drop_down",
       "validation": "[{ validation_msg_key: 'empty_hospital', rule:'1 hospital must selected'}]",
-      "Options": "[{ value:'mayo', label:'Mayo Clinic, Rochester, MN' }, { value:'Cleveland Clinic.', label:'Cleveland Clinic.' }, { value:'UCLA Medical Center.', label:'UCLA Medical Center.' }]",
+      "options": "[{ value:'mayo', label:'Mayo Clinic, Rochester, MN' }, { value:'Cleveland Clinic.', label:'Cleveland Clinic.' }, { value:'UCLA Medical Center.', label:'UCLA Medical Center.' }]",
       "serviceCallName": null,
       "isSingleSelect": true,
       "dependentValue": "branch__c",
@@ -38,7 +38,7 @@
       "api_name": "hospital_location__c",
       "input_type": "drop_down",
       "validation": "[{ validation_msg_key: 'empty_hospital_location', rule:'1 hospital location must selected'}]",
-      "Options": "[{ value:'1', label:'Jaipur' }, { value:'2', label:'Ajmer' }, { value:'3', label:'Delhi' }]",
+      "options": "[{ value:'1', label:'Jaipur' }, { value:'2', label:'Ajmer' }, { value:'3', label:'Delhi' }]",
       "serviceCallName": null,
       "isSingleSelect": true,
       "dependentValue": "hospital__c",
@@ -49,7 +49,7 @@
       "api_name": "patient_id__c",
       "input_type": "input",
       "validation": [],
-      "Options": [],
+      "options": [],
       "serviceCallName": null,
       "isSingleSelect": false,
       "dependentValue": null,
@@ -60,7 +60,7 @@
       "api_name": "body_parts__c",
       "input_type": "checkbox_group",
       "validation": [],
-      "Options": [
+      "options": [
         {
           "label": "Left",
           "value": "left"
@@ -80,7 +80,7 @@
       "api_name": "procedures__c",
       "input_type": "multi_select",
       "validation": "[{ validation_msg_key: 'empty_procedures', rule:'select 1 procedure'}]",
-      "Options": [
+      "options": [
         {
           "label": "Hip",
           "value": "Hip"
@@ -100,7 +100,7 @@
       "api_name": "surgery_date__c",
       "input_type": "datetime",
       "validation": "[{ validation_msg_key: 'empty_surgeory_date', rule:'select date'}]",
-      "Options": [],
+      "options": [],
       "serviceCallName": null,
       "isSingleSelect": false,
       "dependentValue": null,

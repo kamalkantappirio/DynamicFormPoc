@@ -76,24 +76,30 @@ export default class CreateEventForm extends React.Component<Props> {
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic" >
           <View style={styles.container}>
-            {formJoson.fields.map((item: any) => {
+            {formJoson.fields.map((item: any, index: number) => {
               switch (item.input_type ){
                 case FORM_INPUT_TYPE.DROPDOWN:
                   return (
-                    <Dropdown formItem={item}/>
+                    <View key={index}>
+                      <Dropdown formItem={item} />
+                    </View>
                 )
                 case FORM_INPUT_TYPE.CHECKBOX_GROUP:
                   return (
-                    <CheckBoxGroup orientation={'vertical'} checkBoxData={item} />
+                    <View key={index}>
+                      <CheckBoxGroup orientation={'vertical'} checkBoxData={item} />
+                    </View>
                 )
                 case FORM_INPUT_TYPE.DATE_TIME:
                   return (
-                  <DateTimePickerComponent
-                    initialDate = {new Date()}
-                    date={this.state.date}
-                    label = {item.label}
-                    mode={'datetime'}
-                    onChange={this.onSetDate} />
+                    <View key={index}>
+                      <DateTimePickerComponent
+                        initialDate = {new Date()}
+                        date={this.state.date}
+                        label = {item.label}
+                        mode={'datetime'}
+                        onChange={this.onSetDate} />
+                    </View>
                 )
                 case FORM_INPUT_TYPE.MULTI_SELECT : 
                 return(
@@ -130,20 +136,8 @@ export default class CreateEventForm extends React.Component<Props> {
 const styles = StyleSheet.create({
   
   container: {
-    flex: 1
-  },
-  loginButtonContainer: {
-    width: 200,
-  },
-  loginButton: {
-    backgroundColor: 'blue',
-  },
-  loginButtonTitle: {
-    color: "white",
-    fontWeight: '500'
-  },
-  disabled: {
-    backgroundColor: 'blue',
-    opacity: 0.3,
-  },
+    flex: 1,
+    alignItems:'center',
+    justifyContent:'center'
+  }
 });
