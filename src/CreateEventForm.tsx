@@ -12,7 +12,7 @@ import { Formik, FormikProps } from "formik";
 
 import Dropdown from './Components/Dropdown'
 import DateTimePickerComponent from './Components/DateTimePicker'
-import CheckBoxGroup from './Components/CheckBoxGroup'
+import RadioGroup from './Components/RadioGroup'
 import Button from './Components/Button';
 
 
@@ -79,7 +79,7 @@ export default class CreateEventForm extends React.Component<Props> {
                 case FORM_INPUT_TYPE.CHECKBOX_GROUP:
                   return (
                     <View key={index}>
-                      <CheckBoxGroup orientation={'vertical'} checkBoxData={item} />
+                      <RadioGroup orientation={'vertical'} checkBoxData={item} />
                     </View>
                 )
                 case FORM_INPUT_TYPE.DATE_TIME:
