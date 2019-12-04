@@ -17,7 +17,7 @@ import {
   StatusBar,
   TouchableOpacity
 } from 'react-native';
-import formJoson from "../formJoson"; 
+import formJoson from "../formJson.json"; 
 
 import {
   Header,
