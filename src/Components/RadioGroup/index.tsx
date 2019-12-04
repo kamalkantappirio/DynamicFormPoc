@@ -2,37 +2,37 @@ import React, { useState } from 'react';
 
 import RadioComponent from './RadioComponent';
 
-interface CheckBoxOptionProps {
+interface RadioOptionProps {
     label: string,
     value: string,
     selected: boolean
 }
 
-interface CheckBoxProps {
+interface RadioProps {
     Placeholder: string,
     Name: string,
     Input_type: string,
     Required: boolean,
-    options: CheckBoxOptionProps[],
+    options: RadioOptionProps[],
     Wep_api: string,
     IsSingleSelect: boolean,
     DependentValue: string
 }
 
 interface Props {
-    checkBoxData: CheckBoxProps,
+    RadioData: RadioProps,
     orientation: 'horizontal' | 'vertical'
 }
 
-const RadioGroup: React.FC<Props> = ({ checkBoxData }: Props) => {
+const RadioGroup: React.FC<Props> = ({ RadioData }: Props) => {
 
-    const [checkBoxOptions, setCheckBoxOptions] = useState(checkBoxData.options);
+    const [RadioOptions, setRadioOptions] = useState(RadioData.options);
 
-    const handleCheckBox = (label: string) =>{
-        let checkBoxOptionsCopy: CheckBoxOptionProps[] = [...checkBoxOptions];
-        const index = checkBoxOptionsCopy.findIndex((item: CheckBoxOptionProps) => item.value === label);
+    const handleRadio = (label: string) => {
+        let RadioOptionsCopy: RadioOptionProps[] = [...RadioOptions];
+        const index = RadioOptionsCopy.findIndex((item: RadioOptionProps) => item.value === label);
 
-        checkBoxOptionsCopy.map((items: CheckBoxOptionProps, key: number) => {
+        RadioOptionsCopy.map((items: RadioOptionProps, key: number) => {
             if (index === key) {
                 return items.selected = !items.selected;
             } else if (items.selected) {
@@ -40,17 +40,17 @@ const RadioGroup: React.FC<Props> = ({ checkBoxData }: Props) => {
             }
         })
 
-        setCheckBoxOptions(checkBoxOptionsCopy);
+        setRadioOptions(RadioOptionsCopy);
     }
 
-    const checkBoxElement = () => {
+    const radioElement = () => {
         return (
-            checkBoxOptions.map((items: CheckBoxOptionProps, key: number) => (<RadioComponent key={key} value={items.value} name={items.label} selected={items.selected} _handleChange={handleCheckBox} />)))
+            RadioOptions.map((items: RadioOptionProps, key: number) => (<RadioComponent key={key} value={items.value} name={items.label} selected={items.selected} _handleChange={handleRadio} />)))
     }
 
     return (
         <>
-            {checkBoxElement()}
+            {radioElement()}
         </>
     )
 }

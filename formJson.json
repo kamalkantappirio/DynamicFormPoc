@@ -58,7 +58,7 @@
   { 
     "label": "Body Parts", 
     "api_name": "body_parts__c", 
-    "input_type": "checkbox_group", 
+    "input_type": "radio_group", 
     "validation": [], 
     "options": [{
         "label":"Left",
