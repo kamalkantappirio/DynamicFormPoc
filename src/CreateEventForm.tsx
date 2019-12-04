@@ -9,8 +9,14 @@ import {
   DatePickerIOS
 } from 'react-native';
 import { Formik, FormikProps } from "formik";
+
+import Dropdown from './Components/Dropdown'
 import DateTimePickerComponent from './Components/DateTimePicker'
+import CheckBoxGroup from './Components/CheckBoxGroup'
 import Button from './Components/Button';
+
+
+import { FORM_INPUT_TYPE } from './Constants';
 
 interface FormValues {
   email: string;
@@ -60,33 +66,41 @@ export default class CreateEventForm extends React.Component<Props> {
 
     const formJoson = this.props.navigation.state.params.formJoson;
     return (
-      <View style={styles.container}>
-        {formJoson.fields.map((item: any) => {
-          if (item.input_type === 'datetime') {
-            return (
-              <View>
-                <DateTimePickerComponent
-                  initialDate = {new Date()}
-                  date={this.state.date}
-                  mode={'datetime'}
-                  onChange={this.onSetDate} />
-              </View>
-            )
-          }
-        })
-        }
-        <Button
-          title='Submit'
-          buttonStyle={buttonStyle}
-          buttonTextStyle={buttonTextStyle}
-          onClick={this.handleSubmit}
-        />
+        <ScrollView contentInsetAdjustmentBehavior="automatic" >
+          <View style={styles.container}>
+            {formJoson.fields.map((item: any) => {
+              switch (item.input_type ){
+                case FORM_INPUT_TYPE.DROPDOWN:
+                  return (
+                    <Dropdown formItem={item}/>
+                )
+                case FORM_INPUT_TYPE.CHECKBOX_GROUP:
+                  return (
+                    <CheckBoxGroup checkBoxData={item} />
+                )
+                case FORM_INPUT_TYPE.DATE_TIME:
+                  return (
+                  <DateTimePickerComponent
+                    initialDate = {new Date()}
+                    date={this.state.date}
+                    mode={'datetime'}
+                    onChange={this.onSetDate} />
+                )
+              }
+            })
+            }
+          <Button
+            title='Submit'
+            buttonStyle={buttonStyle}
+            buttonTextStyle={buttonTextStyle}
+            onClick={this.handleSubmit}
+          />
       </View>
+    </ScrollView>  
     )
   };
 
   render() {
-    const formJoson = this.props.navigation.state.params.formJoson;
     return (
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -100,12 +114,10 @@ export default class CreateEventForm extends React.Component<Props> {
 
 // styles
 const styles = StyleSheet.create({
+  
   container: {
-    flex: 1,
-    // justifyContent: "space-evenly",
-    // alignItems: "center"
+    flex: 1
   },
-
   loginButtonContainer: {
     width: 200
   },

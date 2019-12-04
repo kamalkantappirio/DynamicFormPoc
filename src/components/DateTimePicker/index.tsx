@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DatePickerIOS, View, Text, StyleSheet } from 'react-native';
+import { DatePickerIOS, View, Text, StyleSheet, Button} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 var moment = require('moment');
 
@@ -13,25 +13,32 @@ interface DateTimePickerProps {
 export const DateTimePickerComponent: React.SFC<DateTimePickerProps> = (props) => {
 
     const [showDatePicker, setShowDatePicker] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(new Date())
+    const [selectedDate, setSelectedDate] = useState(props.date)
 
     return (
         <View>
             {showDatePicker ?
+            <View>
+                <Button
+                    title="Done"
+                    onPress={() => setShowDatePicker(false)}/>
                 <DatePickerIOS
                     {...props}
                     date = {selectedDate}
                     onDateChange={(date) =>  { 
                         setSelectedDate(date);
-                        setShowDatePicker(false)
-                    } }
-                /> 
+                        props.onChange(date);
+                    } }/>
+                </View>
               :
                <View>
                <Text>Visit Date</Text>
                <TouchableOpacity style={styles.dateContainer}
                                  onPress={() => setShowDatePicker(true)}>
-                   <Text>{moment(selectedDate).format('DD/MM/YYYYHH:mm:ss')}</Text>
+                   <Text>{props.mode === 'datetime' ? moment(selectedDate).format('DD/MM/YYYYHH:mm:ss'):
+                          props.mode === 'date' ?  moment(selectedDate).format('DD/MM/YYYY') :
+                        moment(selectedDate).format('HH:mm:ss')
+                }</Text>
                </TouchableOpacity>
                {showDatePicker}
            </View>

@@ -3,7 +3,15 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
-const Button = (props:any) => {
+
+interface Props {
+  title: string;
+  buttonStyle: any;
+  buttonTextStyle: any;
+  onClick(): any;
+}
+
+const Button = (props:Props) => {
   const [buttonState] = useState(props);
   return (
     <TouchableOpacity style={buttonState.buttonStyle} onPress={buttonState.onClick}><Text style={buttonState.buttonTextStyle}>{buttonState.title}</Text></TouchableOpacity>
