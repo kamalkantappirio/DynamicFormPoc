@@ -1,4 +1,4 @@
-import React from 'react';
+import React from './node_modules/react';
 import { StyleSheet } from 'react-native';
 
 import { CheckBox, Text, View } from 'native-base';

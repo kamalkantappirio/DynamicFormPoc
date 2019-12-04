@@ -10,7 +10,7 @@ import {
   View,
 } from 'react-native';
 import { Formik, FormikProps } from "formik";
-import Button from './Button';
+import Button from './Components/Button';
 
 interface FormValues {
   email: string;
