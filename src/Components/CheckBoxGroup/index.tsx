@@ -13,7 +13,7 @@ interface CheckBoxProps {
     Name: string,
     Input_type: string,
     Required: boolean,
-    Options: CheckBoxOptionProps[],
+    options: CheckBoxOptionProps[],
     Wep_api: string,
     IsSingleSelect: boolean,
     DependentValue: string
@@ -26,7 +26,7 @@ interface Props {
 
 const CheckBoxGroup: React.FC<Props> = ({ checkBoxData }: Props) => {
 
-    const [checkBoxOptions, setCheckBoxOptions] = useState(checkBoxData.Options);
+    const [checkBoxOptions, setCheckBoxOptions] = useState(checkBoxData.options);
 
     function handleCheckBox(label: string) {
         let checkBoxOptionsCopy: CheckBoxOptionProps[] = [...checkBoxOptions];

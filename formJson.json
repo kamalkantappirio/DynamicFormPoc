@@ -16,7 +16,7 @@
     "api_name": "branch__c", 
     "input_type": "drop_down", 
     "validation": "[{ validation_msg_key: 'empty_brnach', rule:'1 branch must selected'}]", 
-    "options": [{ "value": "ortho__c", "label": "Ortho" }, { "value": "jr__c", "label": "JR/T" }, { "value": "spine__c", "label": "Spine" }], 
+    "options": [{ "value": "North", "label": "North" }, { "value": "East", "label": "East" }], 
     "serviceCallName": null, 
     "isSingleSelect": true, 
     "dependentValue": "division__c", 
