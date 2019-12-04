@@ -10,7 +10,7 @@ interface Props {
   _handleChange(arg: string): any;
 }
 
-const CheckBoxComponent: React.FC<Props> = ({ name, selected, value, _handleChange }: Props) => {
+const RadioComponent: React.FC<Props> = ({ name, selected, value, _handleChange }: Props) => {
     return (
         <View style={styles.root}>
             <Text style={styles.label}>{name}</Text>
@@ -22,7 +22,7 @@ const CheckBoxComponent: React.FC<Props> = ({ name, selected, value, _handleChan
     );
 }
 
-export default CheckBoxComponent;
+export default RadioComponent;
 
 const styles = StyleSheet.create({
   root: {

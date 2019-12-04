@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import CheckBoxComponent from './CheckBoxComponent';
+import RadioComponent from './RadioComponent';
 
 interface CheckBoxOptionProps {
     label: string,
@@ -25,7 +25,7 @@ interface Props {
     orientation: 'horizontal' | 'vertical'
 }
 
-const CheckBoxGroup: React.FC<Props> = ({ checkBoxData }: Props) => {
+const RadioGroup: React.FC<Props> = ({ checkBoxData }: Props) => {
 
     const [checkBoxOptions, setCheckBoxOptions] = useState(checkBoxData.options);
 
@@ -46,7 +46,7 @@ const CheckBoxGroup: React.FC<Props> = ({ checkBoxData }: Props) => {
 
     const checkBoxElement = () => {
         return (
-            checkBoxOptions.map((items: CheckBoxOptionProps, key: number) => (<CheckBoxComponent key={key} value={items.value} name={items.label} selected={items.selected} _handleChange={handleCheckBox} />)))
+            checkBoxOptions.map((items: CheckBoxOptionProps, key: number) => (<RadioComponent key={key} value={items.value} name={items.label} selected={items.selected} _handleChange={handleCheckBox} />)))
     }
 
     return (
@@ -56,4 +56,4 @@ const CheckBoxGroup: React.FC<Props> = ({ checkBoxData }: Props) => {
     )
 }
 
-export default CheckBoxGroup;
+export default RadioGroup;
