@@ -19,7 +19,7 @@ interface Props {
     label: string;
     api_name: string;
     validation: [];
-    Options: [];
+    options: [];
     serviceCallName: any;
     isSingleSelect: boolean;
     dependentValue: string[];
