@@ -20,34 +20,38 @@ interface CheckBoxProps {
 }
 
 interface Props {
-    checkBoxData: CheckBoxProps
+    checkBoxData: CheckBoxProps,
+    orientation: 'horizontal' | 'vertical'
 }
 
-const CheckBoxGroup: any = ({ checkBoxData }: Props) => {
+const CheckBoxGroup: React.FC<Props> = ({ checkBoxData }: Props) => {
 
     const [checkBoxOptions, setCheckBoxOptions] = useState(checkBoxData.Options);
 
     function handleCheckBox(label: string) {
         let checkBoxOptionsCopy: CheckBoxOptionProps[] = [...checkBoxOptions];
-        let index = checkBoxOptionsCopy.findIndex((item: CheckBoxOptionProps) => item.value === label);
+        const index = checkBoxOptionsCopy.findIndex((item: CheckBoxOptionProps) => item.value === label);
 
         checkBoxOptionsCopy.map((items: CheckBoxOptionProps, key: number) => {
             if (index === key) {
                 return items.selected = !items.selected;
-            } else {
-                if (items.selected) {
-                    return items.selected = !items.selected;
-                }
+            } else if (items.selected) {
+                return items.selected = !items.selected;
             }
         })
 
         setCheckBoxOptions(checkBoxOptionsCopy);
     }
 
+    function checkBoxElement() {
+        return (
+            checkBoxOptions.map((items: CheckBoxOptionProps, key: number) => (<CheckBoxComponent key={key} value={items.value} name={items.label} selected={items.selected} _handleChange={handleCheckBox} />)))
+    }
+
     return (
-        checkBoxOptions.map((items: CheckBoxOptionProps, key: number) => {
-            return <CheckBoxComponent key={key} value={items.value} name={items.label} selected={items.selected} _handleChange={handleCheckBox} />
-        }))
+        <React.Fragment>
+            {checkBoxElement()}
+        </React.Fragment>)
 }
 
 export default CheckBoxGroup;
