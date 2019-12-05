@@ -17,6 +17,7 @@ interface RadioProps {
     Wep_api: string,
     IsSingleSelect: boolean,
     DependentValue: string
+    validation : string
 }
 
 interface Props {

@@ -8,7 +8,8 @@ import {
   View,
   DatePickerIOS
 } from 'react-native';
-import { Formik, FormikProps } from "formik";
+import {Formik, FormikProps} from 'formik';
+import {MultiSelectDropdownComponent} from './MultiSelectDropdown';
 
 import Dropdown from './Components/Dropdown'
 import DateTimePickerComponent from './Components/DateTimePicker'
@@ -22,7 +23,6 @@ interface FormValues {
   email: string;
   password: string;
 }
-
 
 export interface Props {
   navigation: any;
@@ -42,7 +42,6 @@ const buttonTextStyle = {
 }
 
 export default class CreateEventForm extends React.Component<Props> {
-
   handleSubmit = () => {
     console.log('kamal')
   };
@@ -54,6 +53,20 @@ export default class CreateEventForm extends React.Component<Props> {
   onSetDate = (date: Date) => {
     console.log(date);
   }
+ selectedItem = (checkBoxData: []) => {
+    // const updatedCheckBoxOptions = checkBoxData.map(items => ({
+    //   ...items,
+    //   selected: false,
+    // }));
+    // checkBoxData.Options = updatedCheckBoxOptions;
+  };
+
+// get dropdown selected value
+  getDropdownSelectedValue = (selectedValue: any, formItem: any) => {
+    // console.log(selectedValue, formItem)
+  }
+
+  hideDropdownModal = () => {};
 
   renderForm = ({
     values,
@@ -61,9 +74,8 @@ export default class CreateEventForm extends React.Component<Props> {
     touched,
     errors,
     setFieldTouched,
-    isSubmitting
+    isSubmitting,
   }: FormikProps<FormValues>) => {
-
     const formJoson = this.props.navigation.state.params.formJoson;
     return (
         <ScrollView contentInsetAdjustmentBehavior="automatic" >
@@ -73,7 +85,7 @@ export default class CreateEventForm extends React.Component<Props> {
                 case FORM_INPUT_TYPE.DROPDOWN:
                   return (
                     <View key={index}>
-                      <Dropdown formItem={item} />
+                      <Dropdown formItem={item} getSelectedValue={this.getDropdownSelectedValue}/>
                     </View>
                 )
                 case FORM_INPUT_TYPE.RADIO_GROUP:
@@ -92,6 +104,14 @@ export default class CreateEventForm extends React.Component<Props> {
                         mode={'datetime'}
                         onChange={this.onSetDate} />
                     </View>
+                )
+                case FORM_INPUT_TYPE.MULTI_SELECT : 
+                return(
+                  <MultiSelectDropdownComponent
+                    item={item}
+                    selectedItem={this.selectedItem}
+                    hideDropdownModal={this.hideDropdownModal}
+                  />
                 )
               }
             })
@@ -114,7 +134,6 @@ export default class CreateEventForm extends React.Component<Props> {
       </Formik>
     );
   }
-
 }
 
 // styles

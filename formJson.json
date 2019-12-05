@@ -90,7 +90,7 @@
     "serviceCallName": null, 
     "isSingleSelect": false, 
     "dependentValue": "branch__c", 
-    "selectedValues":"''" 
+    "selectedValues":[]
   },
   { 
     "label": "Surgery Date", 

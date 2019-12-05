@@ -26,18 +26,17 @@ type formItem = {
 
 interface Props {
   formItem: formItem;
+  getSelectedValue: Function,
 }
 
 interface State {
   dropdownValue: null | string;
-  dropdownToRender: null | string;
   modalVisible: boolean;
 }
 
 export default class Dropdown extends React.Component<Props, State> {
 
   state = {
-    dropdownToRender: null,     // which dropdown modal to render
     dropdownValue: null,        // selected dropdown value
     modalVisible: false,        // to render dropdown modal or not
   }
@@ -54,16 +53,12 @@ export default class Dropdown extends React.Component<Props, State> {
   // selected dropdown item
   selectItem(value: string) {
     this.setState({ modalVisible: false, dropdownValue: value })
+    this.props.getSelectedValue(value, this.props.formItem)     // passing value to its parent
   }
 
   // show/hide dropdown modal and setting which dropdown modal to render
-  showDropdownModal(formItem: formItem) {
-    this.setState({ dropdownToRender: formItem.api_name, modalVisible: !this.state.modalVisible })
-  }
-
-  // know whether to show/hide dropdown modal
-  visibleHideDropdownModal(formItem: formItem) {
-    return (this.state.dropdownToRender == formItem.api_name && this.state.modalVisible) ? true : false;
+  showDropdownModal() {
+    this.setState({ modalVisible: !this.state.modalVisible })
   }
 
   render() {
@@ -75,10 +70,10 @@ export default class Dropdown extends React.Component<Props, State> {
           <Text style={styles.dropdownValue}>
             {this.state.dropdownValue}
           </Text>
-          <TouchableOpacity style={{ flex: 1 }} onPress={() => this.showDropdownModal(formItem)} />
+          <TouchableOpacity style={{ flex: 1 }} onPress={() => this.showDropdownModal()} />
         </View>
 
-        <Modal visible={this.visibleHideDropdownModal(formItem)} animationType="slide">
+        <Modal visible={this.state.modalVisible} animationType="slide">
           <TouchableOpacity
             onPress={() => this.setState({ modalVisible: !this.state.modalVisible })}
             style={styles.header}>
@@ -96,7 +91,6 @@ export default class Dropdown extends React.Component<Props, State> {
             />
           </View>
         </Modal>
-
       </View>
 
     );

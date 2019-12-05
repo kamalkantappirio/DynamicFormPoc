@@ -62,3 +62,4 @@ buck-out/
 #
 .jest/
 ios/Podfile.lock
+package-lock.json
