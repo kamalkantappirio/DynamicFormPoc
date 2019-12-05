@@ -28,6 +28,10 @@ export interface Props {
   navigation: any;
 }
 
+interface State {
+  date: Date
+}
+
 const buttonStyle = {
   backgroundColor: '#ff0000',
   width: 100,
@@ -41,17 +45,20 @@ const buttonTextStyle = {
   fontWeight: '500'
 }
 
-export default class CreateEventForm extends React.Component<Props> {
+export default class CreateEventForm extends React.Component<Props, State> {
+
   handleSubmit = () => {
     console.log('kamal')
   };
 
   state = {
-    date: new Date()
+    date: new Date('2020-06-12T14:42:42')
   }
 
   onSetDate = (date: Date) => {
-    console.log(date);
+    this.setState({
+      date: date
+    })
   }
  selectedItem = (checkBoxData: []) => {
     // const updatedCheckBoxOptions = checkBoxData.map(items => ({
@@ -94,16 +101,15 @@ export default class CreateEventForm extends React.Component<Props> {
                       <RadioGroup orientation={'vertical'} RadioData={item} />
                     </View>
                 )
-                case FORM_INPUT_TYPE.DATE_TIME:
-                  return (
-                    <View key={index}>
-                      <DateTimePickerComponent
-                        initialDate = {new Date()}
-                        date={this.state.date}
-                        label = {item.label}
-                        mode={'datetime'}
-                        onChange={this.onSetDate} />
-                    </View>
+              case FORM_INPUT_TYPE.DATE_TIME:
+                return (
+                  <View key={index}>
+                    <DateTimePickerComponent
+                      value={this.state.date}
+                      label={item.label}
+                      mode={'date'}
+                      onChange={this.onSetDate} />
+                  </View>
                 )
                 case FORM_INPUT_TYPE.MULTI_SELECT : 
                 return(
@@ -116,20 +122,22 @@ export default class CreateEventForm extends React.Component<Props> {
               }
             })
             }
+          })
+          }
           <Button
             title='Submit'
             buttonStyle={buttonStyle}
             buttonTextStyle={buttonTextStyle}
             onClick={this.handleSubmit}
           />
-      </View>
-    </ScrollView>  
+        </View>
+      </ScrollView>
     )
   };
 
   render() {
     return (
-      <Formik initialValues={{email: '', password: ''}} onSubmit={() => {}}>
+      <Formik initialValues={{ email: '', password: '' }} onSubmit={() => { }}>
         {(formikBag: FormikProps<FormValues>) => this.renderForm(formikBag)}
       </Formik>
     );
@@ -138,10 +146,10 @@ export default class CreateEventForm extends React.Component<Props> {
 
 // styles
 const styles = StyleSheet.create({
-  
+
   container: {
     flex: 1,
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
