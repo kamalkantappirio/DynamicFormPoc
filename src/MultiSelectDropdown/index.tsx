@@ -35,17 +35,13 @@ export const MultiSelectDropdownComponent: React.FC<Props> = props => {
   const [selectedProcedure, setProcedure] = useState([]);
 
   const procedures = props.item;
-  console.log('procedures', procedures);
-  console.log('props', props);
 
   const selectItem = () => {
-    console.log('selectedProcedure', selectedProcedure);
     props.selectedItem(selectedProcedure);
     setModalVisible(false);
   };
 
   function setSelectedProcedure(item: []) {
-    console.log('procedure', item);
     setProcedure(item);
   }
 

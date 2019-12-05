@@ -28,7 +28,7 @@ const DropdownGroup: React.FC<Props> = ({
 }: Props) => {
   const [checkBoxOptions, setCheckBoxOptions] = useState(checkBoxData.options);
 
-  function handleCheckBox(label: string) {
+  const handleCheckBox = (label: string) => {
     let checkBoxOptionsCopy: CheckBoxOptionProps[] = [...checkBoxOptions];
     const index = checkBoxOptionsCopy.findIndex(
       (item: CheckBoxOptionProps) => item.value === label,
@@ -36,7 +36,7 @@ const DropdownGroup: React.FC<Props> = ({
     checkBoxOptionsCopy[index].selected = !checkBoxOptionsCopy[index].selected;
     setCheckBoxOptions(checkBoxOptionsCopy);
     setSelectedProcedure(checkBoxOptions);
-  }
+  };
 
   const radioElement = () => {
     return checkBoxOptions.map((items: CheckBoxOptionProps, key: number) => (
