@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  Modal,
-  TouchableOpacity,
-  FlatList,
-  StyleSheet,
-  Dimensions
-} from 'react-native';
+import { View, Text, Modal, TouchableOpacity, FlatList, StyleSheet, Dimensions } from 'react-native';
 const { height, width } = Dimensions.get('window');
 
 
@@ -22,7 +14,6 @@ type formItem = {
   dependentValue: null | string,
   selectedValues: string
 };
-
 
 interface Props {
   formItem: formItem;
@@ -41,6 +32,13 @@ export default class Dropdown extends React.Component<Props, State> {
     modalVisible: false,        // to render dropdown modal or not
   }
 
+  componentDidMount() {
+    if (this.props.formItem.options.length == 1) {      // no need to open modal, select by default option present
+      this.setState({ dropdownValue: this.props.formItem.options[0].label });
+      this.props.getSelectedValue(this.props.formItem.options[0].label, this.props.formItem)     // passing value to its parent
+    }
+  }
+
   // Modal - dropdown options list
   renderDropdownList(item: { value: string, label: string }) {
     return (
@@ -56,9 +54,11 @@ export default class Dropdown extends React.Component<Props, State> {
     this.props.getSelectedValue(value, this.props.formItem)     // passing value to its parent
   }
 
-  // show/hide dropdown modal and setting which dropdown modal to render
+  // show/hide dropdown modal
   showDropdownModal() {
-    this.setState({ modalVisible: !this.state.modalVisible })
+    if (this.props.formItem.options.length > 1) {   // if more then one options are available, show modal
+      this.setState({ modalVisible: !this.state.modalVisible })
+    }
   }
 
   render() {
