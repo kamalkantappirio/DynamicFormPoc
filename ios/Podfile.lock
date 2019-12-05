@@ -253,6 +253,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+ 
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker/RNDateTimePicker.podspec`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)

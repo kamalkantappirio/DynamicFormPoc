@@ -95,11 +95,11 @@ export default class CreateEventForm extends React.Component<Props, State> {
                       <Dropdown formItem={item} getSelectedValue={this.getDropdownSelectedValue}/>
                     </View>
                 )
-              case FORM_INPUT_TYPE.CHECKBOX_GROUP:
-                return (
-                  <View key={index}>
-                    <RadioGroup orientation={'vertical'} checkBoxData={item} />
-                  </View>
+                case FORM_INPUT_TYPE.RADIO_GROUP:
+                  return (
+                    <View key={index}>
+                      <RadioGroup orientation={'vertical'} RadioData={item} />
+                    </View>
                 )
               case FORM_INPUT_TYPE.DATE_TIME:
                 return (

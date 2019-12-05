@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import CheckBoxComponent from '../Components/CheckBoxGroup/CheckBoxComponent';
+import RadioComponent from '../Components/RadioGroup/RadioComponent';
 
 interface CheckBoxOptionProps {
   label: string;
@@ -22,7 +22,10 @@ interface Props {
   setSelectedProcedure: Function;
 }
 
-const DropdownGroup: any = ({checkBoxData, setSelectedProcedure}: Props) => {
+const DropdownGroup: React.FC<Props> = ({
+  checkBoxData,
+  setSelectedProcedure,
+}: Props) => {
   const [checkBoxOptions, setCheckBoxOptions] = useState(checkBoxData.options);
 
   function handleCheckBox(label: string) {
@@ -35,17 +38,19 @@ const DropdownGroup: any = ({checkBoxData, setSelectedProcedure}: Props) => {
     setSelectedProcedure(checkBoxOptions);
   }
 
-  return checkBoxOptions.map((items: CheckBoxOptionProps, key: number) => {
-    return (
-      <CheckBoxComponent
+  const radioElement = () => {
+    return checkBoxOptions.map((items: CheckBoxOptionProps, key: number) => (
+      <RadioComponent
         key={key}
         value={items.value}
         name={items.label}
         selected={items.selected}
         _handleChange={handleCheckBox}
       />
-    );
-  });
+    ));
+  };
+
+  return <>{radioElement()}</>;
 };
 
 export default DropdownGroup;
