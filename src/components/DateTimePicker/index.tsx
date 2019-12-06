@@ -3,21 +3,24 @@ import {
     View,
     Text,
     StyleSheet,
-    Button,
+    FlatList,
     TouchableOpacity,
     Modal
 } from 'react-native';
 import moment from 'moment';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import useCountryListService from './services/useCountryListService';
+import Loader from './Loader';
+import { CountryList } from './types/countryList';
 
-interface DateTimePickerProps {
+interface Props {
     onChange: Function;
     mode: 'date' | 'time' | 'datetime';
     label: string;
     value: Date;
 }
 
-export const DateTimePickerComponent: React.SFC<DateTimePickerProps> = (props) => {
+export const DateTimePickerComponent: React.SFC<Props> = (props) => {
 
     const [showDatePicker, setShowDatePicker] = useState(false);
     const [selectedDate, setSelectedDate] = useState(props.value)
@@ -33,6 +36,14 @@ export const DateTimePickerComponent: React.SFC<DateTimePickerProps> = (props) =
                 return moment(selectedDate).format('DD/MM/YYYY HH:mm:ss');
         }
     }
+    const service = useCountryListService();
+
+    const renderList = (item: { name: string }) => {
+        return (
+            <Text>{item.name}</Text>
+        )
+    }
+
 
     return (
         <View>
@@ -75,6 +86,27 @@ export const DateTimePickerComponent: React.SFC<DateTimePickerProps> = (props) =
                             } />
                     </View>
                 </View>
+                <>
+                    {service.status === 'loading' && (
+                        <View>
+                            <Loader />
+                        </View>
+                    )}
+                    {service.status === 'loaded' &&
+                        <View style={{ flex: 1, margin: 20 }}>
+                            <FlatList<CountryList>
+                                data={service.payload.result}
+                                renderItem={({ item }: { item: CountryList }) => {
+                                    return renderList(item);
+                                }}
+                                keyExtractor={item => JSON.stringify(item.name)}
+                            />
+                        </View>
+                    }
+                    {service.status === 'error' && (
+                        <View>Error, the backend moved to the dark side.</View>
+                    )}
+                </>
             </Modal>
         </View>
     )
