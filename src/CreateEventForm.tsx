@@ -58,7 +58,6 @@ export default class CreateEventForm extends React.Component<Props, State> {
       date: date,
     });
   };
-
   selectedItem = (checkBoxData: []) => {
     // const updatedCheckBoxOptions = checkBoxData.map(items => ({
     //   ...items,
@@ -100,7 +99,7 @@ export default class CreateEventForm extends React.Component<Props, State> {
               case FORM_INPUT_TYPE.RADIO_GROUP:
                 return (
                   <View key={index}>
-                    <RadioGroup orientation={'vertical'} RadioData={item} />
+                    <RadioGroup orientation={'vertical'} data={item} />
                   </View>
                 );
               case FORM_INPUT_TYPE.DATE_TIME:
