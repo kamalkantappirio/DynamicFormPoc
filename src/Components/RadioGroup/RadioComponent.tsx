@@ -10,17 +10,23 @@ interface Props {
   _handleChange(arg: string): any;
 }
 
-const RadioComponent: React.FC<Props> = ({ name, selected, value, _handleChange }: Props) => {
-    return (
-        <View style={styles.root}>
-            <Text style={styles.label}>{name}</Text>
-            <CheckBox
-                onPress={() => _handleChange(value)}
-                checked={selected}
-            />
-        </View>
-    );
-}
+const RadioComponent: React.FC<Props> = ({
+  name,
+  selected,
+  value,
+  _handleChange,
+}: Props) => {
+  return (
+    <View style={styles.root}>
+      <Text style={styles.label}>{name}</Text>
+      <CheckBox
+        style={styles.radioButton}
+        onPress={() => _handleChange(value)}
+        checked={selected}
+      />
+    </View>
+  );
+};
 
 export default RadioComponent;
 
@@ -28,9 +34,13 @@ const styles = StyleSheet.create({
   root: {
     flexDirection: 'row',
     padding: 10,
+    margin: 5,
+    justifyContent: 'space-between',
   },
   label: {
-    flex: 0.9,
-    height: 20,
+    textAlign: 'left',
+  },
+  radioButton: {
+    alignSelf: 'flex-end',
   },
 });
