@@ -1,32 +1,47 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 import RadioComponent from '../Components/RadioGroup/RadioComponent';
-
-interface CheckBoxOptionProps {
-  label: string;
-  value: string;
-  selected: boolean;
-}
-
-interface CheckBoxProps {
-  Placeholder: string;
-  Name: string;
-  Input_type: string;
-  options: CheckBoxOptionProps[];
-  IsSingleSelect: boolean;
-  DependentValue: string;
-}
+import {CheckBoxProps, CheckBoxOptionProps, CountryListProps} from './types';
+import axios from 'axios';
 
 interface Props {
-  checkBoxData: CheckBoxProps;
+  data: CheckBoxProps;
+  orientation?: 'horizontal' | 'vertical';
+  color?: '';
   setSelectedProcedure: Function;
+  countryName: string;
 }
 
 const DropdownGroup: React.FC<Props> = ({
-  checkBoxData,
+  data,
   setSelectedProcedure,
+  countryName,
 }: Props) => {
-  const [checkBoxOptions, setCheckBoxOptions] = useState(checkBoxData.options);
+  const [checkBoxOptions, setCheckBoxOptions] = useState(data.options);
+
+  const getDataFromService = (countryName: string) => {
+    axios
+      .get(`https://restcountries.eu/rest/v2/name/${countryName}`)
+      .then(res => {
+        const dropdownOptions = res.data.map((items: CountryListProps) => {
+          const currencies = items.currencies;
+          return {
+            label: items.name,
+            currency: currencies && currencies[0].code,
+            value: items.alpha3Code,
+            selected: false,
+          };
+        });
+        setCheckBoxOptions(dropdownOptions); // Setting the checkbox option using hooks
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getDataFromService(countryName);
+  }, [countryName]); // This API will only call whenever country name is changed
 
   const handleCheckBox = (label: string) => {
     let checkBoxOptionsCopy: CheckBoxOptionProps[] = [...checkBoxOptions];

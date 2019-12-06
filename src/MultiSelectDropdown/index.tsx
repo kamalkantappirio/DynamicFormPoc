@@ -48,8 +48,9 @@ export const MultiSelectDropdownComponent: React.FC<Props> = props => {
   const renderDropdownList = () => {
     return (
       <CheckBoxGroup
-        checkBoxData={procedures}
+        data={procedures}
         setSelectedProcedure={setSelectedProcedure}
+        countryName="India" // Sending country name for calling country api based on country name
       />
     );
   };
