@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
+import {Color} from 'csstype';
 import axios from 'axios';
 
 import RadioComponent from './RadioComponent';
-import {Color} from 'csstype';
 import {RadioProps, RadioOptionProps, CountryListProps} from './Types';
 
 interface Props {
@@ -18,14 +18,16 @@ const RadioGroup: React.FC<Props> = ({data}: Props) => {
     axios
       .get(`https://restcountries.eu/rest/v2/all`)
       .then(res => {
-        const formattedCountryData = res.data.map((items: CountryListProps) => {
-          return {
-            label: items.name,
-            value: items.alpha3Code,
-            selected: false,
-          };
-        });
-        setRadioOptions(formattedCountryData);
+        const formattedRadiosOptions = res.data.map(
+          (items: CountryListProps) => {
+            return {
+              label: items.name,
+              value: items.alpha3Code,
+              selected: false,
+            };
+          },
+        );
+        setRadioOptions(formattedRadiosOptions);
       })
       .catch(err => {
         console.log(err);
